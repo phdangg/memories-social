@@ -9,7 +9,7 @@ app.use(bodyParser.json({limit: "30mb", extended:true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended:true}));
 app.use(cors());
 
-const CONNECTION_URL = 'mongodb+srv://phdangg:phdangg123@cluster0.lqyy7oy.mongodb.net/?retryWrites=true&w=majority'
+const CONNECTION_URL = process.env.DB_URL
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(CONNECTION_URL)
