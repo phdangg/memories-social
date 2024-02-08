@@ -14,5 +14,11 @@ export const getPosts = async (req,res)=>{
 }
 
 export const createPosts = (req,res) => {
-    
+    const post = req.body;
+
+    try {
+        
+    } catch (error) {
+        
+    }
 }
