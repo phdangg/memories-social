@@ -4,12 +4,14 @@ import FileBase from "react-file-base64";
 import { useDispatch } from "react-redux";
 
 import useStyles from "./styles";
+import { useSelector } from "react-redux";
 import { createPost, updatePost } from "../../actions/posts";
 
 const Form = ({currentId, setCurrentId}) => {
     const [postData, setPostData] = useState({
         creator: '', title: '', message: '', tags: '', selectedFile: ''
     });
+    const post = useSelector((state) => currentId ? state.posts.find((p)=>p._id === currentId) : null); 
     const classes = useStyles();
     const dispatch = useDispatch();
 
