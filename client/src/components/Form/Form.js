@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
 import { useDispatch } from "react-redux";
@@ -15,11 +15,15 @@ const Form = ({currentId, setCurrentId}) => {
     const classes = useStyles();
     const dispatch = useDispatch();
 
+    useEffect(()=>{
+        if (post) setPostData(post);
+    },[post]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
         if (currentId) {
-            dispatch(updatePost(postData));
+            dispatch(updatePost(currentId,postData));
         }
         else{
             dispatch(createPost(postData));
