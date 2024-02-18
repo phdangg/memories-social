@@ -46,7 +46,7 @@ export const deletePost = async (req, res) => {
     const { id } = req.params;
 
     if (id.match(/^[0-9a-fA-F]{24}$/)) {
-        await PostMessage.findByIdAndRemove(id);        
+        await PostMessage.findOneAndDelete(id);        
         res.json({ message: 'Post deleted successfully' });
     }
 }
