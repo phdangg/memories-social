@@ -41,3 +41,12 @@ export const updatePost = async (req, res) => {
     }
 
 }
+
+export const deletePost = async (req, res) => {
+    const { id } = req.params;
+
+    if (id.match(/^[0-9a-fA-F]{24}$/)) {
+        await PostMessage.findByIdAndRemove(id);        
+        res.json({ message: 'Post deleted successfully' });
+    }
+}
