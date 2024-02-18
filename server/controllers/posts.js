@@ -50,3 +50,15 @@ export const deletePost = async (req, res) => {
         res.json({ message: 'Post deleted successfully' });
     }
 }
+
+export const likePost = async (req, res) => {
+    const { id } = req.params;
+    
+    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+        res.json({ message: 'Invalid id' });
+    }
+    
+    const post = await PostMessage.findById(id);
+    const updatePost = await PostMessage.findByIdAndUpdate(id, {likePost: post.likePost + 1}, { new: true });
+    res.json(updatePost);
+}
