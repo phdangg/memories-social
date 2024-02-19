@@ -8,14 +8,7 @@ import useStyles from "./styles";
 import NavBar from "./components/NavBar/NavBar";
 import Home from "./components/Home/Home";
 
-const App = () => {
-    const [currentId, setCurrentId] = useState(null);
-    const classes = useStyles();
-    const dispatch = useDispatch();
-
-    useEffect(()=>{
-        dispatch(getPosts());
-    },[currentId,dispatch]);
+const App = () => {    
 
     return (
         <Container maxWidth="lg">           
