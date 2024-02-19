@@ -6,6 +6,7 @@ import { getPosts } from "./actions/posts";
 import Posts from "./components/Posts/Posts";
 import Form from "./components/Form/Form";
 import useStyles from "./styles";
+import NavBar from "./components/NavBar/NavBar";
 
 const App = () => {
     const [currentId, setCurrentId] = useState(null);
@@ -18,7 +19,7 @@ const App = () => {
 
     return (
         <Container maxWidth="lg">           
-            
+            <NavBar />
             <Grow in>
                 <Container>
                     <Grid className={classes.mainContainer} container justify="space-between" alignItems="stretch" spacing={3}>
