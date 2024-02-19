@@ -1,9 +1,10 @@
 import React from "react";
 import { Container } from "@material-ui/core";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import NavBar from "./components/NavBar/NavBar";
 import Home from "./components/Home/Home";
+import Auth from "./components/Auth/Auth";
 
 const App = () => {    
 
@@ -12,10 +13,10 @@ const App = () => {
             <Container maxWidth="lg">           
                 <NavBar />
                 <Switch>
-                    <Route path="/" exact Component={Home}/>
-                    <Route path="/auth" exact Component={Auth}/>
+                    <Routes path="/" exact Component={Home}/>
+                    <Routes path="/auth" exact Component={Auth}/>
                 </Switch>
-                <Home/>
+                
             </Container>
         </BrowserRouter>
     )

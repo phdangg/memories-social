@@ -1,9 +1,9 @@
 import React from 'react'
 import { Grow, Grid } from "@material-ui/core";
-import { getPosts } from "./actions/posts";
+import { getPosts } from "../../actions/posts";
 import { useDispatch } from "react-redux";
-import Posts from "./components/Posts/Posts";
-import Form from "./components/Form/Form";
+import Posts from "../Posts/Posts";
+import Form from "../Form/Form";
 import useStyles from "./styles";
 
 const Home = () => {
