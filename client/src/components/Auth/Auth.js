@@ -25,6 +25,14 @@ const Auth = () => {
     handleShowPassword(false);
   }
 
+  const googleSuccess = () => {
+    console.log(res);
+  }
+
+  const googleFailure = (res) => {
+    console.log("Google Sign In was unsuccessful. Try again latter");
+  }
+
   const handleShowPassword = () => setShowPassword((preShowPassword) => !preShowPassword);
 
   return (
@@ -50,10 +58,11 @@ const Auth = () => {
             {isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password"/>}
           </Grid>
           <GoogleLogin
-            clientId='GOOGLE ID'
+            clientId='684178928187-lppc9hu8unmr0792fnrqadc0tia3brr2.apps.googleusercontent.com'
             render={(renderProps)=>(
               <Button 
-                  className={classes.googleButton} 
+                  className={classes.googleButton}
+                  fullWidth 
                   variant='contained' color='primary' 
                   onClick={renderProps.onClick} 
                   disabled={renderProps.disabled} 
@@ -62,6 +71,8 @@ const Auth = () => {
                   Google Sign In
               </Button>
             )}
+            onSuccess={googleSuccess}
+            onFailure={googleFailure}
           />
           <Button type="submit" fullWidth variant='contained' color="primary" className={classes.submit}>
             {isSignup ? 'Sign Up' : 'Sign In'}
