@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({limit: "30mb", extended:true}));
 app.use(cors());
 
 app.use('/posts', postRoutes);
+app.use('/client_id', (req,res) => res.send({client_id: process.env.CLIENT_ID}));
 
 const CONNECTION_URL = process.env.DB_URL
 const PORT = process.env.PORT || 5000;
