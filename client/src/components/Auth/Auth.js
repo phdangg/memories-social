@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
 import { Avatar, Button, Paper, Grid, Typography, Container, TextField } from "@material-ui/core";
 import { useGoogleLogin } from '@react-oauth/google';
+import { useDispatch } from "react-redux";
+import { jwtDecode } from "jwt-decode";
 import Icon from "./icon";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import useStyles from "./styles";
+import axios from "axios";
 import Input from "./Input";
 
 const Auth = () => {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignUp] = useState(false);
-
+  const dispatch = useDispatch();
 
   const handleSubmit = () => {
 
@@ -26,7 +29,20 @@ const Auth = () => {
   }
 
     const login = useGoogleLogin({
-      onSuccess: tokenResponse => console.log(tokenResponse),
+      onSuccess: async (tokenResponse) => {
+        try {
+          const userInfo = await axios
+            .get('https://www.googleapis.com/oauth2/v3/userinfo', {
+              headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
+            })
+            .then(res => res.data);
+            console.log(userInfo)
+
+          dispatch({type: "AUTH", data: userInfo})
+        } catch (error) {
+          console.log(error);
+        }
+      },
       onError: () => console.log("Login Failed"),
     });
   
