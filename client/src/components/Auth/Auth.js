@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Avatar, Button, Paper, Grid, Typography, Container, TextField } from "@material-ui/core";
 import { useGoogleLogin } from '@react-oauth/google';
 import { useDispatch } from "react-redux";
-import { jwtDecode } from "jwt-decode";
+import { useNavigate } from 'react-router-dom';
 import Icon from "./icon";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import useStyles from "./styles";
@@ -14,6 +14,7 @@ const Auth = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignUp] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
 
@@ -39,6 +40,7 @@ const Auth = () => {
             console.log(userInfo)
 
           dispatch({type: "AUTH", data: userInfo})
+          navigate('/');
         } catch (error) {
           console.log(error);
         }
