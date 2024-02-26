@@ -36,8 +36,7 @@ const Auth = () => {
             .get('https://www.googleapis.com/oauth2/v3/userinfo', {
               headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
             })
-            .then(res => res.data);
-            console.log(userInfo)
+            .then(res => res.data);            
 
           dispatch({type: "AUTH", data: userInfo})
           navigate('/');
