@@ -9,18 +9,22 @@ import useStyles from "./styles";
 import axios from "axios";
 import Input from "./Input";
 
+const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: ''}
+
 const Auth = () => {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignUp] = useState(false);
-  const dispatch = useDispatch();
+  const [formData, setFormData] = useState(initialState);
+  const dispatch = useDispatch ();
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
   }
 
-  const handleChange = () => {
+  const handleChange = (e) => {
+    setFormData({...formData, [e.target.name]: e.target.value});
 
   }
 
