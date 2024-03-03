@@ -39,7 +39,7 @@ const Auth = () => {
 
   const switchMode = () => {
     setIsSignUp((preIsSignUp) => !preIsSignUp);
-    handleShowPassword(false);
+    setShowPassword(false);
   }
 
     const login = useGoogleLogin({
@@ -70,7 +70,7 @@ const Auth = () => {
           <LockOutlinedIcon/>
         </Avatar>
         <Typography variant='h5'>{isSignup ? 'Sign Up' : 'Sign In'}</Typography>
-        <from className={classes.form} onSubmit={handleSubmit}>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             {
                 isSignup && (
@@ -104,7 +104,7 @@ const Auth = () => {
                 </Button>
               </Grid>
           </Grid>
-        </from>
+        </form>
       </Paper>
     </Container>
   )
