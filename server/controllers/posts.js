@@ -53,12 +53,25 @@ export const deletePost = async (req, res) => {
 
 export const likePost = async (req, res) => {
     const { id } = req.params;
+
+    if (!req.userId) return res.json({ message: "Unauthenticated"});
     
     if (!id.match(/^[0-9a-fA-F]{24}$/)) {
         res.json({ message: 'Invalid id' });
     }
     
     const post = await PostMessage.findById(id);
-    const updatePost = await PostMessage.findByIdAndUpdate(id, {likedCount: post.likedCount + 1}, { new: true });
+
+    const index = post.likes.findIndex((id)=>id===String(req.userId));
+
+    if (index === -1) {
+        // like the post
+        post.likes.push(req.userId);
+    } else {
+        // dislike the post
+        post.likes = post.likes.filter((id)=> id !== String(req.userId))
+    }
+
+    const updatePost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
     res.json(updatePost);
 }
