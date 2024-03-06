@@ -32,7 +32,7 @@ const NavBar = () => {
                 {user ? (
                     <div className={classes.profile}>
                         <Avatar className={classes.purple} alt={user.name} src={user.picture}>{user.family_name}</Avatar>
-                        <Typography className={classes.userName} variant='h6'>{user.name ? user.name : user.result.name}</Typography>
+                        <Typography className={classes.userName} variant='h6'>{user.name ?? user.result.name}</Typography>
                         <Button variant='contained' className={classes.logout} color='secondary' onClick={logout}>Logout</Button>
                     </div>
                 ) : (
