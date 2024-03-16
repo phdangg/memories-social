@@ -42,23 +42,23 @@ const Auth = () => {
     setShowPassword(false);
   }
 
-    const login = useGoogleLogin({
-      onSuccess: async (tokenResponse) => {
-        try {
-          const userInfo = await axios
-            .get('https://www.googleapis.com/oauth2/v3/userinfo', {
-              headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
-            })
-            .then(res => res.data);            
+    // const login = useGoogleLogin({
+    //   onSuccess: async (tokenResponse) => {
+    //     try {
+    //       const userInfo = await axios
+    //         .get('https://www.googleapis.com/oauth2/v3/userinfo', {
+    //           headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
+    //         })
+    //         .then(res => res.data);            
 
-          dispatch({type: "AUTH", data: userInfo})
-          navigate('/');
-        } catch (error) {
-          console.log(error);
-        }
-      },
-      onError: () => console.log("Login Failed"),
-    });
+    //       dispatch({type: "AUTH", data: userInfo})
+    //       navigate('/');
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+    //   },
+    //   onError: () => console.log("Login Failed"),
+    // });
   
 
   const handleShowPassword = () => setShowPassword((preShowPassword) => !preShowPassword);
@@ -88,7 +88,7 @@ const Auth = () => {
           <Button type="submit" fullWidth variant='contained' color="primary" className={classes.submit}>
             {isSignup ? 'Sign Up' : 'Sign In'}
           </Button>
-          <Button 
+          {/* <Button 
                   className={classes.googleButton}
                   fullWidth 
                   variant='contained' color='primary' 
@@ -96,7 +96,7 @@ const Auth = () => {
                   startIcon={<Icon/>}
                 >
                   Google Sign In
-          </Button>
+          </Button> */}
           <Grid container justify='flex-end'>
               <Grid item>
                 <Button onClick={switchMode}>
