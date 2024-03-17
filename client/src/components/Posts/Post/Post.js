@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardActionArea, CardContent, CardMedia, Button, Typography, CardActions } from "@material-ui/core";
+import { Card, CardActionArea, CardContent, CardMedia, Button, Typography, CardActions, ButtonBase } from "@material-ui/core";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -28,8 +28,13 @@ const Post = ({post, setCurrentId}) => {
         return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
       };
 
+    const openPost = () => {
+
+    };
+
     return (
         <Card className={classes.card} raised elevation={6}>
+        <ButtonBase className={classes.cardActions} onClick={openPost} />
             <CardMedia className={classes.media} image={post.selectedFile} title={post.title}/>            
             <div className={classes.overlay}>
                 <Typography variant="h6">{post.name}</Typography>
