@@ -30,12 +30,14 @@ const NavBar = () => {
 
         setUser(JSON.parse(localStorage.getItem('profile')));
     },[location]);    
+
+    const toHomePage = () => navigate('/')
     
 
     return (        
         <AppBar className={classes.appBar} position="static" color="inherit">
             <div className={classes.brandContainer}>
-                <img className={classes.image} src={memories} alt="memories" height="60"/>
+                <img onClick={toHomePage} className={classes.image} src={memories} alt="memories" height="60"/>
             </div>
             <Toolbar className={classes.toolbar}>
                 {user ? (
