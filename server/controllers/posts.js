@@ -2,15 +2,10 @@ import PostMessage from "../models/postMessage.js"
 
 export const getPosts = async (req,res)=>{
     try {
-
         const postMessage = await PostMessage.find();
-
         res.status(200).json(postMessage);
-
     } catch (error) {
-
-        res.status(404).json({message: error.message});        
-        
+        res.status(404).json({message: error.message}); 
     }
 }
 
@@ -28,18 +23,13 @@ export const getPostsBySearch = async (req,res) => {
 
 export const createPosts = async (req,res) => {
     const post = req.body;
-
     const newPost = new PostMessage({ ...post, creator: req.userId, createdAt: new Date().toISOString()});
     
-    try {
-        
+    try {        
         await newPost.save();
         res.status(201).json(newPost);
-
     } catch (error) {
-
         res.status(409).json({message: error.message});       
-        
     }
 }
 
@@ -51,7 +41,6 @@ export const updatePost = async (req, res) => {
         const updatePost = await PostMessage.findByIdAndUpdate(_id, post, { new: true });        
         res.json(updatePost);
     }
-
 }
 
 export const deletePost = async (req, res) => {
@@ -73,7 +62,6 @@ export const likePost = async (req, res) => {
     }
     
     const post = await PostMessage.findById(id);
-
     const index = post.likes.findIndex((id)=>id===String(req.userId));
 
     if (index === -1) {
